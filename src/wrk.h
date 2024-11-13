@@ -16,6 +16,7 @@
 #include "ae.h"
 #include "http_parser.h"
 #include "hdr_histogram.h"
+#include "machnet.h"  // Include machnet.h
 
 #define VERSION  "4.0.0"
 #define RECVBUF  8192
@@ -83,6 +84,10 @@ typedef struct connection {
     uint64_t latest_expected_start;
     uint64_t latest_connect;
     uint64_t latest_write;
+
+    void *channel_ctx;  // Added this for Machnet context
+    MachnetFlow_t machnet_flow; // Added this for Machnet flow information
+
 } connection;
 
 #endif /* WRK_H */
